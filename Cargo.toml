@@ -1,0 +1,9 @@
+[package]
+name = "qrcode-generator-evcxr"
+version = "0.1.0"
+edition = "2021"
+description = "Display QR codes in Jupyter notebooks via evcxr"
+license = "MIT"
+
+[dependencies]
+qrcode-generator = "5.0.0"
