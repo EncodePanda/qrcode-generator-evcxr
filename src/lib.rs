@@ -92,3 +92,21 @@ pub fn render_svg(matrix: &[Vec<bool>], size: usize, margin: usize) -> String {
     svg.push_str("</svg>");
     svg
 }
+
+/// Display a QR code in Jupyter using default settings.
+///
+/// Accepts any type implementing `QrCodeable`: `&str`, `String`, or `Vec<Vec<bool>>`.
+pub fn draw_qrcode(input: impl QrCodeable) {
+    draw_qrcode_with_config(input, QrConfig::default());
+}
+
+/// Display a QR code in Jupyter with custom configuration.
+///
+/// Accepts any type implementing `QrCodeable`: `&str`, `String`, or `Vec<Vec<bool>>`.
+pub fn draw_qrcode_with_config(input: impl QrCodeable, config: QrConfig) {
+    let matrix = input.to_matrix(config.ec_level);
+    let svg = render_svg(&matrix, config.size, config.margin);
+    println!("EVCXR_BEGIN_CONTENT image/svg+xml");
+    println!("{}", svg);
+    println!("EVCXR_END_CONTENT");
+}
