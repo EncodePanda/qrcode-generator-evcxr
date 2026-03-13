@@ -1,4 +1,4 @@
-use qrcode_generator_evcxr::{draw_qrcode, draw_qrcode_with_config, QrConfig, QrCodeEcc};
+use qrcode_generator_evcxr::{draw_qrcode, draw_qrcode_with_config, QrCodeEcc, QrConfig};
 
 #[test]
 fn test_draw_qrcode_does_not_panic() {

@@ -26,10 +26,7 @@ fn test_string_ref_to_matrix() {
 
 #[test]
 fn test_vec_vec_bool_to_matrix() {
-    let original = vec![
-        vec![true, false],
-        vec![false, true],
-    ];
+    let original = vec![vec![true, false], vec![false, true]];
     let matrix = original.to_matrix(QrCodeEcc::Low);
     // Should return a clone of itself, ignoring ec_level
     assert_eq!(matrix, vec![vec![true, false], vec![false, true]]);

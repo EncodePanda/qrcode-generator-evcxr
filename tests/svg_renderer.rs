@@ -3,10 +3,7 @@ use qrcode_generator_evcxr::render_svg;
 #[test]
 fn test_render_svg_produces_valid_svg() {
     // A tiny 2x2 matrix: top-left and bottom-right are black
-    let matrix = vec![
-        vec![true, false],
-        vec![false, true],
-    ];
+    let matrix = vec![vec![true, false], vec![false, true]];
     let svg = render_svg(&matrix, 100, 0);
 
     assert!(svg.starts_with("<svg"));
