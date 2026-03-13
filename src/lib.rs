@@ -1,5 +1,37 @@
 pub use qrcode_generator::QrCodeEcc;
 
+/// Trait for types that can be converted into a QR code matrix.
+pub trait QrCodeable {
+    fn to_matrix(&self, ec_level: QrCodeEcc) -> Vec<Vec<bool>>;
+}
+
+impl QrCodeable for str {
+    fn to_matrix(&self, ec_level: QrCodeEcc) -> Vec<Vec<bool>> {
+        qrcode_generator::to_matrix_from_str(self, ec_level)
+            .expect("Failed to generate QR code matrix")
+    }
+}
+
+impl QrCodeable for String {
+    fn to_matrix(&self, ec_level: QrCodeEcc) -> Vec<Vec<bool>> {
+        qrcode_generator::to_matrix_from_str(self, ec_level)
+            .expect("Failed to generate QR code matrix")
+    }
+}
+
+impl QrCodeable for Vec<Vec<bool>> {
+    fn to_matrix(&self, _ec_level: QrCodeEcc) -> Vec<Vec<bool>> {
+        self.clone()
+    }
+}
+
+/// Blanket impl so that `&str`, `&String`, `&&str`, etc. all work.
+impl<T: QrCodeable + ?Sized> QrCodeable for &T {
+    fn to_matrix(&self, ec_level: QrCodeEcc) -> Vec<Vec<bool>> {
+        (**self).to_matrix(ec_level)
+    }
+}
+
 /// Configuration for QR code rendering.
 pub struct QrConfig {
     /// Error correction level.
