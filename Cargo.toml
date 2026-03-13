@@ -4,6 +4,9 @@ version = "0.1.0"
 edition = "2021"
 description = "Display QR codes in Jupyter notebooks via evcxr"
 license = "MIT"
+homepage = "https://github.com/EncodePanda/qrcode-generator-evcxr"
+repository = "https://github.com/EncodePanda/qrcode-generator-evcxr"
+categories = ["visualization", "multimedia::images"]
 
 [dependencies]
 qrcode-generator = "5.0.0"
